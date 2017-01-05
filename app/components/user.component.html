@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Hello from {{name}}!</h1>
+  <form class="form-inline">
+    <input type="text" class="form-control" name="name" [(ngModel)]="name" />
+    <input type="text" class="form-control" name="occupy" [(ngModel)]="occupy" />
+    <input type="text" class="form-control" name="address.city" [(ngModel)]="address.city" />
+    <input type="text" class="form-control" name="address.metro" [(ngModel)]="address.metro" />
+  </form>
+  <p><i> That's my name :) </i></p>
+  <p> I'm into {{occupy}}</p>
+  <p> And live in {{address.city}}, near {{address.metro}} metro station.</p>
+  <button (click)="toggleMovies()" class="{{showMovies ? 'btn btn-warning' : 'btn btn-primary'}}">{{showMovies ? 'Nah, hide movies!' : 'Wanna show movies?'}}</button>
+  <div *ngIf="showMovies">
+    <h5>Favourite movies:</h5>
+    <ul>
+      <li *ngFor="let movie of movies; let i = index">
+        {{movie}} <button (click)="deleteThisMovie(i)" class="btn btn-xs btn-danger" title="Delete from list">x</button>
+      </li>
+    </ul>
+    <form class="form-inline" (submit)="addMovie(movie.value)">
+      <label>Add movie to the list</label>
+      <input type="text" class="form-control" #movie />
+      <input type="submit" class="btn btn-success" value="Add movie">
+    </form>
+  </div>
+  <hr />
+  <h4>POSTS service with jsonplaceholder:</h4>
+  <div *ngFor="let post of posts">
+    <h5>Title: {{post.title}}</h5>
+    <p><strong>Message: </strong>{{post.body}}</p>
+  </div>
+</div>
